@@ -4,7 +4,7 @@ const { DB_HOST, PORT = 3000 } = process.env;
 
 mongoose.set('strictQuery', false);
 
-(async () => {
+(async (req) => {
   try {
     await mongoose.connect(DB_HOST);
     app.listen(PORT);

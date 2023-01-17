@@ -4,13 +4,17 @@ const { SECRET_KEY } = process.env;
 
 const User = require("../../models/user");
 
-const { HttpError } = require("../../helpers/HttpError");
+const { HttpError } = require("../../helpers/index");
 
 const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
+
+    if (!user.verify) {
+      throw HttpError(401, "Email have not verify");
+    }
 
     if (!user) {
       throw HttpError(401, "Email or password invalid");
