@@ -7,7 +7,6 @@ const { jimp } = require('../../helpers/index');
 const avatarsDir = path.join(__dirname, "../../", "public", "avatars");
 
 const updateAvatar = async (req, res) => {
-    console.log(req.user.avatarURL)
     const {path: tempUpload, originalname} = req.file;
     const {_id} = req.user;
     const filename = `${_id}_${originalname}`;
